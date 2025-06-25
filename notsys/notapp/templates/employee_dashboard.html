@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">Welcome, {{ user.username }}</div>
+    <div class="navbar-right">
+      <a href="{% url 'employee_dashboard' %}" class="nav-link">Dashboard</a>
+      <a href="#notifications" class="nav-link notification-link">
+        Notifications{% if unread_count > 0 %} <span class="notif-count">({{ unread_count }})</span>{% endif %}
+      </a>
+      <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h2>Your Tasks</h2>
+    <ul class="task-list">
+      {% for task in tasks %}
+        <li><strong>{{ task.title }}</strong>: {{ task.description }}</li>
+      {% endfor %}
+    </ul>
+
+    <h2 id="notifications">Notifications</h2>
+    <ul class="notif-list">
+      {% for note in notifications %}
+        <li class="{% if not note.is_read %}unread{% endif %}">
+          {{ note.message }} <small>({{ note.created_at }})</small>
+
+          {% if not note.is_read %}
+            <form method="post" action="{% url 'mark_read' note.id %}" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit">✅ Mark as Read</button>
+            </form>
+          {% else %}
+            <span class="status-icon">✔️ Read</span>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li>No notifications</li>
+      {% endfor %}
+    </ul>
+  </div>
+</body>
+</html>
