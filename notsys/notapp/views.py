@@ -1,6 +1,6 @@
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
@@ -25,6 +25,13 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('login')  
 
 @login_required
 def dashboard(request):
