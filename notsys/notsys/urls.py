@@ -34,7 +34,7 @@ urlpatterns = [
 
 
     ####API URLS####
-   # path('login1/', login_view, name='login'),
+    path('login1/', login_view, name='login'),
     path('signup1/',signup_view1,name='signup1'),
     path('logout/', logout_view1, name='logout'),
     path('admin-dashboard1/', admin_dashboard1, name='admin_dashboard1'),
