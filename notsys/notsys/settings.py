@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'notapp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,4 @@ STATICFILES_DIRS = [BASE_DIR / 'notapp/static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
+

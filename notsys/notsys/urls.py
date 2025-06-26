@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from notapp.views import logout_view, mark_read, signup_view, admin_dashboard, employee_dashboard, dashboard
+from notapp.views import admin_dashboard1, dashboard1, employee_dashboard1, login_view, logout_view, logout_view1, mark_read, mark_read1, signup_view, admin_dashboard, employee_dashboard, dashboard, signup_view1
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -30,4 +30,21 @@ urlpatterns = [
     path('mark-read/<int:not_id>/', mark_read, name='mark_read'),
 
     path('', dashboard, name='dashboard'),
-]
+
+
+
+    ####API URLS####
+   # path('login1/', login_view, name='login'),
+    path('signup1/',signup_view1,name='signup1'),
+    path('logout/', logout_view1, name='logout'),
+    path('admin-dashboard1/', admin_dashboard1, name='admin_dashboard1'),
+    path('employee-dashboard1/', employee_dashboard1, name='employee_dashboard1'),
+    path('mark-read1/<int:not_id>/', mark_read1, name='mark_read1'),
+    path('', dashboard1, name='dashboard1'),
+
+
+
+
+
+
+ ]
